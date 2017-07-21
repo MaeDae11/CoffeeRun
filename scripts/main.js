@@ -54,20 +54,7 @@ var theDataz = {};
 function setValues(key, keyValue){
     localStorage.setItem(key, keyValue);
     theDataz[key] = keyValue;
-    console.log(theDataz);
-  
 };
-
-function submitClick(){
-    $('[data-coffee-order="form"]').on('submit', function (){
-        event.preventDefault();
-        getCoffee();
-        getEmail();
-    }); 
-};
-
-submitClick();
-
 
 function getCoffee(){
     var coffeeType = 'coffee';
@@ -80,6 +67,40 @@ function getEmail(){
     var $emailValue = $EMAIL.val();
     setValues(email, $emailValue);
 }
+
+function getSize(){
+    var size = 'size';
+    var $sizeValue = $SIZE.val();
+    setValues(size, $sizeValue)
+}
+
+function getFlavor() {
+    var flavor = 'flavor';
+    var $flavorValue = $FLAVOR.val();
+    setValues(flavor, $flavorValue)
+}
+
+function getStrength() {
+    var strength = 'strength';
+    var $strengthValue = $STRENGTH.val();
+    setValues(strength, $strengthValue)
+}
+
+function submitClick(){
+    $('[data-coffee-order="form"]').on('submit', function (){
+        event.preventDefault();
+        getCoffee();
+        getEmail();
+        getSize();
+        getFlavor();
+        getStrength();
+        console.log(theDataz)
+    }); 
+};
+
+submitClick();
+
+
 
 
 
