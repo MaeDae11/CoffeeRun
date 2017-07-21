@@ -41,7 +41,7 @@
 // Person writes in all their stuff on form and hits submit.
 // submit will be the trigger function.
 // then loop through all the data and push it storage
-
+var URL = 'http://dc-coffeerun.herokuapp.com/api/coffeeorders';
 var $SUBMIT = $('[type="submit"]');
 var $EMAIL = $('[name="emailAddress"]');
 var $COFFEE = $('[name="coffee"]');
@@ -49,23 +49,59 @@ var $SIZE = $('[name="size"]');
 var $FLAVOR = $('[name="flavor"]');
 var $STRENGTH = $('[name="strength"]')
 
+var theDataz = {};
 
+function setValues(key, keyValue){
+    localStorage.setItem(key, keyValue);
+    theDataz[key] = keyValue;
+    console.log(theDataz);
+  
+};
 
 function submitClick(){
     $('[data-coffee-order="form"]').on('submit', function (){
-        localStorage.setItem('coffee', $COFFEE.val());
-        localStorage.setItem('email', $EMAIL.val());
-        localStorage.setItem('size', $SIZE.val());
-        localStorage.setItem('flavor', $FLAVOR.val());
-        localStorage.setItem('strength', $STRENGTH.val());
+        event.preventDefault();
+        getCoffee();
+        getEmail();
     }); 
 };
 
 submitClick();
 
 
+function getCoffee(){
+    var coffeeType = 'coffee';
+    var $coffeeValue = $COFFEE.val();
+    setValues(coffeeType, $coffeeValue);
+}
+
+function getEmail(){
+    var email = 'email';
+    var $emailValue = $EMAIL.val();
+    setValues(email, $emailValue);
+}
+
+
+
+// $.get(URL, function (data) {
+//      console.log(data);
+// });
+
 // function coffeeInfo() {
 //     var $COFFEE = $('[name="coffee"]');
 //     var name = 'coffee'
 //     localStorage.setItem('coffee', $COFFEE.val());
 // }
+
+
+
+
+  // localStorage.setItem('email', $EMAIL.val());
+    // theDataz['email'] = $EMAIL.val();
+    // localStorage.setItem('size', $SIZE.val());
+    // theDataz['size'] = $SIZE.val();
+    // localStorage.setItem('flavor', $FLAVOR.val());
+    // theDataz['flavor'] = $FLAVOR.val();
+    // localStorage.setItem('strength', $STRENGTH.val());
+    // theDataz['strength'] = $STRENGTH.val();
+    // console.log(theDataz);
