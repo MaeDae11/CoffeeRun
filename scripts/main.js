@@ -63,7 +63,7 @@ function getCoffee(){
 }
 
 function getEmail(){
-    var email = 'email';
+    var email = 'emailAddress';
     var $emailValue = $EMAIL.val();
     setValues(email, $emailValue);
 }
@@ -94,6 +94,9 @@ function submitClick(){
         getSize();
         getFlavor();
         getStrength();
+        $.post(URL, theDataz, function (resp){
+            console.log(resp)
+        });
         console.log(theDataz)
     }); 
 };
@@ -101,30 +104,13 @@ function submitClick(){
 submitClick();
 
 
-// 
 
 
 
 
-// $.get(URL, function (data) {
-//      console.log(data);
-// });
-
-// function coffeeInfo() {
-//     var $COFFEE = $('[name="coffee"]');
-//     var name = 'coffee'
-//     localStorage.setItem('coffee', $COFFEE.val());
-// }
 
 
 
 
-  // localStorage.setItem('email', $EMAIL.val());
-    // theDataz['email'] = $EMAIL.val();
-    // localStorage.setItem('size', $SIZE.val());
-    // theDataz['size'] = $SIZE.val();
-    // localStorage.setItem('flavor', $FLAVOR.val());
-    // theDataz['flavor'] = $FLAVOR.val();
-    // localStorage.setItem('strength', $STRENGTH.val());
-    // theDataz['strength'] = $STRENGTH.val();
-    // console.log(theDataz);
+
+
