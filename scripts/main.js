@@ -104,7 +104,7 @@ function getOrderFromStorage(){
     })
 }
 
-function getEmail()
+// function getEmail()
 
 
 
@@ -119,10 +119,12 @@ function getPastOrder(){
     });
 };
 
+function printPastOrders() {
+    $('.coffee-order').append("This is a test");
+};
 
 
-
-
+printPastOrders();
 getOrderFromStorage();
 getPastOrder();
 submitClick();
