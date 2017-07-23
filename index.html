@@ -3,6 +3,9 @@
   <head>
     <meta charset="utf-8"/>
     <title>coffeerun</title>
+    <!--favicon  -->
+    <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="images/favicon.ico" type="image/x-icon">
     <!--bootstrap  -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css">
     <!--my css  -->
@@ -32,24 +35,25 @@
               <label for="emailInput">Email</label>
               <input class="form-control" type="email" name="emailAddress" id="emailInput" value="" placeholder="dr@who.com">
             </div>
-
-            <div class="radio col-md-12">
-              <label>
-                <input type="radio" name="size" value="short">
-                Short
-              </label>
-            </div>
-            <div class="radio col-md-12">
-              <label>
-                <input type="radio" name="size" value="tall" checked>
-                Tall
-              </label>
-            </div>
-            <div class="radio col-md-12">
-              <label>
-                <input type="radio" name="size" value="grande">
-                Grande
-              </label>
+            <div class="form-group">
+              <div class="radio col-md-12">
+                <label>
+                  <input type="radio" name="size" value="short">
+                  Short
+                </label>
+              </div>
+              <div class="radio col-md-12">
+                <label>
+                  <input type="radio" name="size" value="tall">
+                  Tall
+                </label>
+              </div>
+              <div class="radio col-md-12">
+                <label>
+                  <input type="radio" name="size" value="grande">
+                  Grande
+                </label>
+              </div>
             </div>
 
             <div class="form-group col-md-8">
@@ -68,13 +72,18 @@
             <div class="buttons col-md-12">
               <button data-type-button="submit" type="submit" class="btn btn-default">Submit</button>
               <button type="reset" class="btn btn-default">Reset</button>
-              <button data-type-button="orders" class="btn btn-default">Get Past Order</button>
+              <button data-type-button="personal-order" class="btn btn-default">Get My Order</button>
+              <button data-type-button="orders" class="btn btn-default">Get All Past Orders</button>
             </div>
           </form>
         </div>
       </div>
       <div class="past-orders-container fluid-container">
         <p class="past-order text-capitalize"><span></span></p>
+      </div>
+      <div class="local-orders-container fluid-container">
+
+        <p class="local-storage-past-order text-capitalize"><span></span></p>
 
       </div>
     </section>
@@ -90,12 +99,13 @@
       </div>
     </footer>
 
-
+    <!--jquery  -->
     <script
       src="https://code.jquery.com/jquery-3.2.1.min.js"
       integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
       crossorigin="anonymous">
     </script>
+    <!--my js file  -->
     <script src="scripts/main.js" charset="utf-8"></script>
   </body>
 </html>

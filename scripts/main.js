@@ -84,6 +84,7 @@ function getStrength() {
     setValues(strength, $strengthValue);
 }
 
+// submitts to API
 function submitClick(){
     $('[data-type-button="submit"]').on('click', function (){
         event.preventDefault();
@@ -92,20 +93,13 @@ function submitClick(){
         getSize();
         getFlavor();
         getStrength();
-        $.post(URL, theDataz, function (resp){
-            console.log(resp);
+        // $.post(URL, theDataz, function (resp){
+        //     console.log(resp);
         });
-    }); 
+    // }); 
 };
 
-function getOrderFromStorage(){
-    $(window).on('load', function () {
-        var coffeeOrder = localStorage.getItem('coffee');
-        console.log(coffeeOrder);
-    })
-}
-
-// gets all data from API
+// callback: gets all data from API and prints to HTML
 function getOrdersFromAPI(){
      $.getJSON(URL, 'coffeeOrders', function(data){
         $.each(data, function(key, val){
@@ -115,8 +109,8 @@ function getOrdersFromAPI(){
     });
 };
 
-
-function getPastOrder(){
+//innitiates to get all past orders from API
+function getAllPastOrders(){
     $('[data-type-button="orders"]').on('click', function (){
         event.preventDefault();
         $( ".past-orders-container" ).show();
@@ -124,24 +118,37 @@ function getPastOrder(){
     });
 };
 
-function getPersonalOrdersFromAPI(){
-     $.getJSON(URL, 'coffeeOrders', function(data){
-        console.log("working");
-     });
+// get localstorave values in array
+function getValues(){
+    for(var i=0, len=localStorage.length; i<len; i++) {
+        var key = localStorage.key(i);
+        var value = localStorage[key];
+        $(".local-storage-past-order span")
+            .append(key + ": " + value + "<br />");
+
+    }
 };
 
-// function printPastOrders(data) {
-//     // var coffee = data, {"coffee[]": ""}
-//     $('.coffee-order').append(coffee);
+// innitiates to get order from local storage
+function getOrderFromStorage(){
+    $('[data-type-button="personal-order"]').on('click', function () {
+        event.preventDefault();
+        $(".local-orders-container").show();
+        getValues();
+    });
+};
+
+// function getPersonalOrdersFromAPI(){
+//     localStorage.getItem('coffee');
 // };
 
 
 // getOrdersFromAPI();
-// printPastOrders();
+// printAllPastOrderss();
 $( ".past-orders-container" ).hide();
-getPersonalOrdersFromAPI()
+// getPersonalOrdersFromAPI();
 getOrderFromStorage();
-getPastOrder();
+getAllPastOrders();
 submitClick();
 
 
