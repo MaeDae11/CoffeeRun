@@ -118,9 +118,9 @@ function getAllPastOrders(){
     });
 };
 
-// get localstorave values in array
+// get localstorave values in array and prints to HTML
 function getValues(){
-    for(var i=0, len=localStorage.length; i<len; i++) {
+    for(var i=0; i < localStorage.length; i++) {
         var key = localStorage.key(i);
         var value = localStorage[key];
         $(".local-storage-past-order span")
@@ -138,15 +138,9 @@ function getOrderFromStorage(){
     });
 };
 
-// function getPersonalOrdersFromAPI(){
-//     localStorage.getItem('coffee');
-// };
 
-
-// getOrdersFromAPI();
-// printAllPastOrderss();
+$(".local-orders-container").hide();
 $( ".past-orders-container" ).hide();
-// getPersonalOrdersFromAPI();
 getOrderFromStorage();
 getAllPastOrders();
 submitClick();

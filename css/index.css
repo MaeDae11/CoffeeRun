@@ -34,7 +34,12 @@ font-family: 'Oswald', sans-serif; */
     overflow-x: scroll;
     font-family: 'Oswald', sans-serif;
 }
-
+.local-orders-container {
+    line-height: 2rem;
+    padding-left: 15px;
+    padding-top: 20px;
+    font-family: 'Oswald', sans-serif;
+}
 
 .footer-container{
     height: 300px;
