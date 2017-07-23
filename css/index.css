@@ -1,3 +1,6 @@
+/* font-family: 'Pacifico', cursive;
+font-family: 'Oswald', sans-serif; */
+
 .jumbotron {
     height: 500px;
     background-image: url("../images/coffeeheart.jpg");
@@ -15,6 +18,12 @@
 
 .title {
     padding: 20px;
+    font-family: 'Pacifico', cursive;
+}
+
+.form-group {
+    font-family: 'Oswald', sans-serif;
+    font-size: 16px;
 }
 
 
@@ -22,7 +31,8 @@
     line-height: 5rem;
     padding-left: 15px;
     height: 200px;
-    overflow: scroll;
+    overflow-x: scroll;
+    font-family: 'Oswald', sans-serif;
 }
 
 
@@ -37,4 +47,5 @@
 
 .footer-info {
     padding-left: 30px;
+    font-family: 'Pacifico', cursive;
 }
