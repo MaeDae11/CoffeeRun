@@ -34,6 +34,7 @@
 
 // The .serialize() method creates a text string in standard URL-encoded notation. It can act on a jQuery object that has selected individual form controls, such as <input>, <textarea>, and <select>: $( "input, textarea, select" ).serialize();
 
+// $(document.createElement('div'));
 
 // Person writes in all their stuff on form and hits submit.
 // submit will be the trigger function.
@@ -104,12 +105,21 @@ function getOrderFromStorage(){
     })
 }
 
-// function getEmail()
+// gets all data from API
+function getOrdersFromAPI(){
+    $.get(URL, storeData);
+        //     $(".past-orders-container p")
+        //         .append("Email: " + "working");
+        // }, " ");
+};
+        // printPastOrders(data);
+
+function storeData(orders) {
+    localStorage.setItem('coffeeOrders', JSON.stringify(orders));
+    
+}
 
 
-
-
-// $(document.createElement('div'));
 
 function getPastOrder(){
     $('[data-type-button="orders"]').on('click', function (){
@@ -119,12 +129,14 @@ function getPastOrder(){
     });
 };
 
-function printPastOrders() {
-    $('.coffee-order').append("This is a test");
+function printPastOrders(data) {
+    // var coffee = data, {"coffee[]": ""}
+    $('.coffee-order').append(coffee);
 };
 
 
-printPastOrders();
+getOrdersFromAPI();
+// printPastOrders();
 getOrderFromStorage();
 getPastOrder();
 submitClick();
