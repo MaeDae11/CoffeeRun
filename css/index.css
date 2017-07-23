@@ -16,3 +16,25 @@
 .title {
     padding: 20px;
 }
+
+
+.past-orders-container {
+    line-height: 5rem;
+    padding-left: 15px;
+    height: 200px;
+    overflow: scroll;
+}
+
+
+.footer-container{
+    height: 300px;
+    display: flex;
+    align-items: center;
+    background-image: url("../images/coffeebean.jpg");
+    background-repeat: no-repeat;
+    background-position: right;
+}
+
+.footer-info {
+    padding-left: 30px;
+}

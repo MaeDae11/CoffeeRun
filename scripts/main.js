@@ -92,9 +92,9 @@ function submitClick(){
         getSize();
         getFlavor();
         getStrength();
-        // $.post(URL, theDataz, function (resp){
-        //     console.log(resp);
-        // });
+        $.post(URL, theDataz, function (resp){
+            console.log(resp);
+        });
     }); 
 };
 
@@ -109,35 +109,37 @@ function getOrderFromStorage(){
 function getOrdersFromAPI(){
      $.getJSON(URL, 'coffeeOrders', function(data){
         $.each(data, function(key, val){
-            $(".past-order")
+            $(".past-order span")
                 .append("Order: " + key + ": " + "orders a " + val['coffee'] + " " + val['size'] + " with " + val['flavor'] + ", " + val['strength'] + "mg strong." +  "<br />");
         });
     });
 };
 
 
-// function storeData(orders) {
-//     localStorage.setItem('coffeeOrders', JSON.stringify(orders));
-// }
-
-
-
 function getPastOrder(){
     $('[data-type-button="orders"]').on('click', function (){
         event.preventDefault();
-        var emailAddress = localStorage.getItem('emailAddress');
-        console.log(emailAddress);
+        $( ".past-orders-container" ).show();
+        getOrdersFromAPI();
     });
 };
 
-function printPastOrders(data) {
-    // var coffee = data, {"coffee[]": ""}
-    $('.coffee-order').append(coffee);
+function getPersonalOrdersFromAPI(){
+     $.getJSON(URL, 'coffeeOrders', function(data){
+        console.log("working");
+     });
 };
 
+// function printPastOrders(data) {
+//     // var coffee = data, {"coffee[]": ""}
+//     $('.coffee-order').append(coffee);
+// };
 
-getOrdersFromAPI();
+
+// getOrdersFromAPI();
 // printPastOrders();
+$( ".past-orders-container" ).hide();
+getPersonalOrdersFromAPI()
 getOrderFromStorage();
 getPastOrder();
 submitClick();
