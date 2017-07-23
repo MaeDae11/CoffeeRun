@@ -17,9 +17,6 @@
 
 // value
 // Get the current value of the first element in the set of matched elements or set the value of every matched element.
-// $ageInput.on('input', function (event){
-//     console.log($ageInput.val());
-// });
 
 // change value
 // $ageInput.val('');
@@ -71,44 +68,64 @@ function getEmail(){
 function getSize(){
     var size = 'size';
     var $sizeValue = $SIZE.val();
-    setValues(size, $sizeValue)
+    setValues(size, $sizeValue);
 }
 
 function getFlavor() {
     var flavor = 'flavor';
     var $flavorValue = $FLAVOR.val();
-    setValues(flavor, $flavorValue)
+    setValues(flavor, $flavorValue);
 }
 
 function getStrength() {
     var strength = 'strength';
     var $strengthValue = $STRENGTH.val();
-    setValues(strength, $strengthValue)
+    setValues(strength, $strengthValue);
 }
 
 function submitClick(){
-    $('[data-coffee-order="form"]').on('submit', function (){
+    $('[data-type-button="submit"]').on('click', function (){
         event.preventDefault();
         getCoffee();
         getEmail();
         getSize();
         getFlavor();
         getStrength();
-        $.post(URL, theDataz, function (resp){
-            console.log(resp)
-        });
-        console.log(theDataz)
+        // $.post(URL, theDataz, function (resp){
+        //     console.log(resp);
+        // });
     }); 
 };
 
+function getOrderFromStorage(){
+    $(window).on('load', function () {
+        var coffeeOrder = localStorage.getItem('coffee');
+        console.log(coffeeOrder);
+    })
+}
+
+function getEmail()
+
+
+
+
+// $(document.createElement('div'));
+
+function getPastOrder(){
+    $('[data-type-button="orders"]').on('click', function (){
+        event.preventDefault();
+        var emailAddress = localStorage.getItem('emailAddress');
+        console.log(emailAddress);
+    });
+};
+
+
+
+
+
+getOrderFromStorage();
+getPastOrder();
 submitClick();
-
-
-
-
-
-
-
 
 
 
