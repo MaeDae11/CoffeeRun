@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="utf-8"/>
-    <title>coffeerun</title>
+    <title>Coffeerun</title>
     <!--favicon  -->
     <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
     <link rel="icon" href="images/favicon.ico" type="image/x-icon">
@@ -14,11 +14,14 @@
     <link href="https://fonts.googleapis.com/css?family=Oswald|Pacifico" rel="stylesheet">
   </head>
   <body class="container">
+
+    <!--jumbotron container for background-image set in CSS  -->
     <header class="jumbotron">
-      
     </header>
+
     <section>
 
+      <!--start of form  -->
       <div class="panel panel-default">
         <div class="panel-body">
           <form data-coffee-order="form">
@@ -26,15 +29,19 @@
               <h1>Coffee Run</h1>
             </div>
 
+            <!--coffee order  -->
             <div class="form-group col-md-8">
               <label for="coffeeOrder">Coffee Order</label>
               <input class="form-control " name="coffee" id="coffeeOrder" value="" autofocus >
             </div>
 
+            <!--email  -->
             <div class="form-group col-md-8">
               <label for="emailInput">Email</label>
               <input class="form-control" type="email" name="emailAddress" id="emailInput" value="" placeholder="dr@who.com">
             </div>
+
+            <!--size  -->
             <div class="form-group">
               <div class="radio col-md-12">
                 <label>
@@ -56,6 +63,7 @@
               </div>
             </div>
 
+            <!--flavor  -->
             <div class="form-group col-md-8">
               <label for="flavorShot">Flavor Shot</label>
               <select id="flavorShot" class="form-control" name="flavor">
@@ -65,30 +73,41 @@
                 <option value="mocha">Mocha</option>
               </select>
             </div>
+
+            <!--strength  -->
             <div class="form-group col-md-8">
-              <label for="strengthLevel">Caffeine Rating</label>
+              <label for="strengthLevel">Caffeine Strength</label>
               <input name="strength" id="strengthLevel" type="range" value="30">
             </div>
+
+
+            <!--buttons at bottom of page to trigger events  -->
             <div class="buttons col-md-12">
               <button data-type-button="submit" type="submit" class="btn btn-default">Submit</button>
               <button type="reset" class="btn btn-default">Reset</button>
               <button data-type-button="personal-order" class="btn btn-default">Get My Order</button>
               <button data-type-button="orders" class="btn btn-default">Get All Past Orders</button>
             </div>
+
+            <!--end of form  -->
           </form>
         </div>
       </div>
+
+      <!--containers for information to be printed when triggered with click of buttons within form-->
+      <!--container for all past orders received from API  -->
       <div class="past-orders-container fluid-container">
         <p class="past-order text-capitalize"><span></span></p>
       </div>
+
+      <!--container for personal order received from local storage-->
       <div class="local-orders-container fluid-container">
         <h3>Personal Order</h3>
-
         <p class="local-storage-past-order text-capitalize"><span></span></p>
-
       </div>
     </section>
 
+    <!--footer info-->
     <footer>
       <div class="footer-container">
         <div class="footer-info">

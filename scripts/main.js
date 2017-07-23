@@ -37,53 +37,63 @@
 // $(document.createElement('div'));
 
 // Person writes in all their stuff on form and hits submit.
-// submit will be the trigger function.
-// then loop through all the data and push it storage
+// submit will be the trigger function to store in local storage AND API.
+// Get My Order button triggers function to get most recent order from Local Storage
+//  Get All Past Orders button triggers function to get all orders in API
+
+
+// global Variables
 var URL = 'http://dc-coffeerun.herokuapp.com/api/coffeeorders';
 var $SUBMIT = $('[type="submit"]');
-var $EMAIL = $('[name="emailAddress"]');
-var $COFFEE = $('[name="coffee"]');
-var $SIZE = $('[name="size"]');
-var $FLAVOR = $('[name="flavor"]');
-var $STRENGTH = $('[name="strength"]')
-
 var theDataz = {};
 
+// global variables that ended up only being used once as of right now
+// var $EMAIL = $('[name="emailAddress"]');
+// var $COFFEE = $('[name="coffee"]');
+// var $SIZE = $('[name="size"]');
+// var $FLAVOR = $('[name="flavor"]');
+// var $STRENGTH = $('[name="strength"]')
+
+
+
+
+// 2 C
 function setValues(key, keyValue){
     localStorage.setItem(key, keyValue);
     theDataz[key] = keyValue;
 };
-
+// 2 C
 function getCoffee(){
     var coffeeType = 'coffee';
-    var $coffeeValue = $COFFEE.val();
+    var $coffeeValue = $('[name="coffee"]').val();
     setValues(coffeeType, $coffeeValue);
 }
-
+// 2 C
 function getEmail(){
     var email = 'emailAddress';
-    var $emailValue = $EMAIL.val();
+    var $emailValue = $('[name="emailAddress"]').val();
     setValues(email, $emailValue);
 }
-
+// 2 C
 function getSize(){
     var size = 'size';
-    var $sizeValue = $SIZE.val();
+    var $sizeValue = $('[name="size"]').val();
     setValues(size, $sizeValue);
 }
-
+// 2 C
 function getFlavor() {
     var flavor = 'flavor';
-    var $flavorValue = $FLAVOR.val();
+    var $flavorValue = $('[name="flavor"]').val();
     setValues(flavor, $flavorValue);
 }
-
+// 2 C
 function getStrength() {
     var strength = 'strength';
-    var $strengthValue = $STRENGTH.val();
+    var $strengthValue = $('[name="strength"]').val();
     setValues(strength, $strengthValue);
 }
 
+// 1 C
 // submitts to API
 function submitClick(){
     $('[data-type-button="submit"]').on('click', function (){
@@ -99,6 +109,8 @@ function submitClick(){
     // }); 
 };
 
+
+// 2 B
 // callback: gets all data from API and prints to HTML
 function getOrdersFromAPI(){
      $.getJSON(URL, 'coffeeOrders', function(data){
@@ -109,6 +121,8 @@ function getOrdersFromAPI(){
     });
 };
 
+
+// 1 B
 //innitiates to get all past orders from API
 function getAllPastOrders(){
     $('[data-type-button="orders"]').on('click', function (){
@@ -118,6 +132,8 @@ function getAllPastOrders(){
     });
 };
 
+
+// 2 A
 // get localstorave values in array and prints to HTML
 function getValues(){
     for(var i=0; i < localStorage.length; i++) {
@@ -129,6 +145,7 @@ function getValues(){
     }
 };
 
+// 1 A
 // innitiates to get order from local storage
 function getOrderFromStorage(){
     $('[data-type-button="personal-order"]').on('click', function () {
@@ -139,11 +156,15 @@ function getOrderFromStorage(){
 };
 
 
+// hides containers for orders until button is clicked
 $(".local-orders-container").hide();
 $( ".past-orders-container" ).hide();
-getOrderFromStorage();
-getAllPastOrders();
-submitClick();
+
+// innitializes page
+// A, B and C correlate to code above and which steps are first, second, etc.
+getOrderFromStorage();  // A
+getAllPastOrders(); // B
+submitClick();  // C
 
 
 
