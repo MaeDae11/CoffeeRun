@@ -108,25 +108,13 @@ function getOrderFromStorage(){
 // gets all data from API
 function getOrdersFromAPI(){
      $.getJSON(URL, 'coffeeOrders', function(data){
-        var items = [];
         $.each(data, function(key, val){
-            $(".past-orders-container")
-                .append(key + " " + val['coffee'] + "<br />");
-            // items.push("<li id='" + key + "'>" + val + "</li>")
-            // console.log(items)
+            $(".past-order")
+                .append("Order: " + key + ": " + "orders a " + val['coffee'] + " " + val['size'] + " with " + val['flavor'] + ", " + val['strength'] + "mg strong." +  "<br />");
         });
-        
-        // $("<ul/>", {
-        //     "class": "my-new-list",
-        //     html: items.join("")
-        // }).appendTo(".past-orders-container");
     });
-    
-        //     $(".past-orders-container p")
-        //         .append("Email: " + "working");
-        // }, " ");
 };
-        // printPastOrders(data);
+
 
 // function storeData(orders) {
 //     localStorage.setItem('coffeeOrders', JSON.stringify(orders));
