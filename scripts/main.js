@@ -85,7 +85,23 @@ function submitClick(){
 
 
 
+// takes value of 'strength' for coffee and returns a phrase in a string instead of a number
+//2.5
+function setStrengthOfCoffee(value){
+    // if (value === undefined){
+        value = "";
+    } else if (value === 0){
+        value = "decaf";
+    } else if (value <= 25) {
+        value = "mild";
+    } else if (value < 75 || value > 25) {
+        value = "medium roast";
+    } else if (value >=75) {
+        value = "strong"
+    } return value;
+};
 
+// checks if value is undefined and replaces it with empty string
 //2.5
 function checkForUndefined(value){
     if (value === undefined){
@@ -98,7 +114,7 @@ function checkForUndefined(value){
 function appendOrderToHTML(data){
     $.each(data, function(key, val){
         $(".past-order span")
-            .append("Order: " + key + ": " + "orders a " + val['coffee'] + " " + checkForUndefined(val['size']) + " " + checkForUndefined(val['flavor']) + " " + checkForUndefined(val['strength']) + " " + "coffee." + "<br />");
+            .append("Order: " + key + ": " + "orders a " + val['coffee'] + " " + checkForUndefined(val['size']) + " " + checkForUndefined(val['flavor']) + " " + setStrengthOfCoffee(val['strength']) + " " + "coffee." + "<br />");
     });
 };
 // gets data from API in JSON format
