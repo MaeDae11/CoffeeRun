@@ -20,43 +20,43 @@ var theDataz = {};
 
 
 
-// 2 C
+// 3.3
 function setValues(key, keyValue){
     localStorage.setItem(key, keyValue);
     theDataz[key] = keyValue;
 };
-// 2 C
+// 3.3
 function getCoffee(){
     var coffeeType = 'coffee';
     var $coffeeValue = $('[name="coffee"]').val();
     setValues(coffeeType, $coffeeValue);
 }
-// 2 C
+// 3.3
 function getEmail(){
     var email = 'emailAddress';
     var $emailValue = $('[name="emailAddress"]').val();
     setValues(email, $emailValue);
 }
-// 2 C
+// 3.3
 function getSize(){
     var size = 'size';
     var $sizeValue = $('[name="size"]').val();
     setValues(size, $sizeValue);
 }
-// 2 C
+// 3.3
 function getFlavor() {
     var flavor = 'flavor';
     var $flavorValue = $('[name="flavor"]').val();
     setValues(flavor, $flavorValue);
 }
-// 2 C
+// 3.3
 function getStrength() {
     var strength = 'strength';
     var $strengthValue = $('[name="strength"]').val();
     setValues(strength, $strengthValue);
 }
 
-// 1 C
+// 3.1
 // submitts to API
 function submitClick(){
     $('[data-type-button="submit"]').on('click', function (){
@@ -72,7 +72,7 @@ function submitClick(){
     }); 
 };
 
-// 2 B
+// 2 (now condenced below)
 // callback: gets all data from API and prints to HTML
 // function getOrdersFromAPI(){
 //      $.getJSON(URL, 'coffeeOrders', function(data){
@@ -83,70 +83,89 @@ function submitClick(){
 //     });
 // };
 
-// 2.3
-function getDataFromAPI(){
-    return $.getJSON(URL);
-}
 
+
+
+//2.5
+function checkForUndefined(value){
+    if (value === undefined){
+       value = "";
+    }
+    return value;
+};
+// prints to HTML
 // 2.4
 function appendOrderToHTML(data){
     $.each(data, function(key, val){
         $(".past-order span")
-            .append("Order: " + key + ": " + "orders a " + val['coffee'] + " " + val['size'] + " with " + val['flavor'] + ", " + val['strength'] + "mg strong." +  "<br />");
+            .append("Order: " + key + ": " + "orders a " + val['coffee'] + " " + checkForUndefined(val['size']) + " " + checkForUndefined(val['flavor']) + " " + checkForUndefined(val['strength']) + " " + "coffee." + "<br />");
     });
 };
+// gets data from API in JSON format
+// 2.3
+function getDataFromAPI(){
+    return $.getJSON(URL);
+}
 // 2.2
-// callback: gets all data from API and prints to HTML
+// callback: gets all data from API and then prints to HTML
 function getOrdersFromAPI(){
-    var data = getDataFromAPI();
-    data
-        .then(appendOrderToHTML)
+    getDataFromAPI()
+        .then(appendOrderToHTML);
 };
-
-// 2.1
+//1.2
 // get localstorave values in array and prints to HTML
-function getValues(){
+function getValues(counter){
     for(var i=0; i < localStorage.length; i++) {
         var key = localStorage.key(i);
         var value = localStorage[key];
         $(".local-storage-past-order span")
             .append(key + ": " + value + "<br />");
-
     }
 };
 
-
+// 1 and 2 keeps track of how many times button is clicked
+function clickCounter(receivedCounter, dataType){
+    if (receivedCounter === 0){
+            dataType.show();
+            getOrdersFromAPI();
+            receivedCounter = 1;
+    } else if (receivedCounter === 1){
+            dataType.hide();
+            receivedCounter = 0;
+    } return receivedCounter
+}
 
 // 1.2
 //innitiates to get all past orders from API
 function getAllPastOrders(){
+    var counter = 0;
     $('[data-type-button="orders"]').on('click', function (){
         event.preventDefault();
-        $( ".past-orders-container" ).show();
-        getOrdersFromAPI();
+        counter = clickCounter(counter, $( ".past-orders-container"));
     });
 };
 
 // 1.1
 // innitiates to get order from local storage
 function getOrderFromStorage(){
+    var counter = 0;
     $('[data-type-button="personal-order"]').on('click', function () {
         event.preventDefault();
-        $(".local-orders-container").show();
         getValues();
+        counter = clickCounter(counter, $(".local-orders-container"));
     });
 };
 
 
 // hides containers for orders until button is clicked
 $(".local-orders-container").hide();
-$( ".past-orders-container" ).hide();
+$(".past-orders-container").hide();
 
 // innitializes page
 // A, B and C correlate to code above and which steps are first, second, etc.
-getOrderFromStorage();  // A
-getAllPastOrders(); // B
-submitClick();  // C
+getOrderFromStorage();  // 1
+getAllPastOrders(); // 2
+submitClick();  // 3
 
 
 
