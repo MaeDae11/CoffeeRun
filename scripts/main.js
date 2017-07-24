@@ -72,31 +72,38 @@ function submitClick(){
     }); 
 };
 
-
 // 2 B
 // callback: gets all data from API and prints to HTML
+// function getOrdersFromAPI(){
+//      $.getJSON(URL, 'coffeeOrders', function(data){
+//         $.each(data, function(key, val){
+//             $(".past-order span")
+//                 .append("Order: " + key + ": " + "orders a " + val['coffee'] + " " + val['size'] + " with " + val['flavor'] + ", " + val['strength'] + "mg strong." +  "<br />");
+//         });
+//     });
+// };
+
+// 2.3
+function getDataFromAPI(){
+    return $.getJSON(URL);
+}
+
+// 2.4
+function appendOrderToHTML(data){
+    $.each(data, function(key, val){
+        $(".past-order span")
+            .append("Order: " + key + ": " + "orders a " + val['coffee'] + " " + val['size'] + " with " + val['flavor'] + ", " + val['strength'] + "mg strong." +  "<br />");
+    });
+};
+// 2.2
+// callback: gets all data from API and prints to HTML
 function getOrdersFromAPI(){
-     $.getJSON(URL, 'coffeeOrders', function(data){
-        $.each(data, function(key, val){
-            $(".past-order span")
-                .append("Order: " + key + ": " + "orders a " + val['coffee'] + " " + val['size'] + " with " + val['flavor'] + ", " + val['strength'] + "mg strong." +  "<br />");
-        });
-    });
+    var data = getDataFromAPI();
+    data
+        .then(appendOrderToHTML)
 };
 
-
-// 1 B
-//innitiates to get all past orders from API
-function getAllPastOrders(){
-    $('[data-type-button="orders"]').on('click', function (){
-        event.preventDefault();
-        $( ".past-orders-container" ).show();
-        getOrdersFromAPI();
-    });
-};
-
-
-// 2 A
+// 2.1
 // get localstorave values in array and prints to HTML
 function getValues(){
     for(var i=0; i < localStorage.length; i++) {
@@ -108,7 +115,19 @@ function getValues(){
     }
 };
 
-// 1 A
+
+
+// 1.2
+//innitiates to get all past orders from API
+function getAllPastOrders(){
+    $('[data-type-button="orders"]').on('click', function (){
+        event.preventDefault();
+        $( ".past-orders-container" ).show();
+        getOrdersFromAPI();
+    });
+};
+
+// 1.1
 // innitiates to get order from local storage
 function getOrderFromStorage(){
     $('[data-type-button="personal-order"]').on('click', function () {
