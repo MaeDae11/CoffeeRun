@@ -88,7 +88,7 @@ function submitClick(){
 // takes value of 'strength' for coffee and returns a phrase in a string instead of a number
 //2.5
 function setStrengthOfCoffee(value){
-    // if (value === undefined){
+    if (value === undefined){
         value = "";
     } else if (value === 0){
         value = "decaf";

@@ -25,6 +25,12 @@ font-family: 'Oswald', sans-serif; */
     font-family: 'Oswald', sans-serif;
     font-size: 16px;
 }
+.btn {
+    box-shadow: 2px 2px 10px grey;
+    background-color: teal;
+    opacity: .7;
+    color: white;
+}
 
 
 .past-orders-container {
@@ -41,6 +47,9 @@ font-family: 'Oswald', sans-serif; */
     padding-top: 20px;
     font-family: 'Oswald', sans-serif;
 }
+.local-orders-container h3 {
+    font-family: 'Pacifico', cursive;
+}
 
 .footer-container{
     height: 300px;
@@ -54,4 +63,8 @@ font-family: 'Oswald', sans-serif; */
 .footer-info {
     padding-left: 30px;
     font-family: 'Pacifico', cursive;
+}
+
+.footer-info a{
+    color: teal;
 }
