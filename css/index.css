@@ -28,10 +28,15 @@ font-family: 'Oswald', sans-serif; */
 .btn {
     box-shadow: 2px 2px 10px grey;
     background-color: teal;
-    opacity: .7;
+    opacity: .8;
     color: white;
+    border: .75px solid grey;
 }
-
+.email-search,
+.search-button {
+    margin-top: 20px;
+    box-shadow: 2px 2px 10px grey;
+}
 
 .past-orders-container {
     line-height: 5rem;
@@ -47,6 +52,7 @@ font-family: 'Oswald', sans-serif; */
     padding-top: 20px;
     font-family: 'Oswald', sans-serif;
 }
+.past-orders-container h3,
 .local-orders-container h3 {
     font-family: 'Pacifico', cursive;
 }

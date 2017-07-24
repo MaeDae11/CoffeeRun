@@ -72,19 +72,6 @@ function submitClick(){
     }); 
 };
 
-// 2 (now condenced below)
-// callback: gets all data from API and prints to HTML
-// function getOrdersFromAPI(){
-//      $.getJSON(URL, 'coffeeOrders', function(data){
-//         $.each(data, function(key, val){
-//             $(".past-order span")
-//                 .append("Order: " + key + ": " + "orders a " + val['coffee'] + " " + val['size'] + " with " + val['flavor'] + ", " + val['strength'] + "mg strong." +  "<br />");
-//         });
-//     });
-// };
-
-
-
 // takes value of 'strength' for coffee and returns a phrase in a string instead of a number
 //2.5
 function setStrengthOfCoffee(value){
@@ -128,10 +115,12 @@ function getOrdersFromAPI(){
     getDataFromAPI()
         .then(appendOrderToHTML);
 };
+
+
 //1.2
-// get localstorave values in array and prints to HTML
+// get localstorage values in array and prints to HTML
 function getValues(counter){
-    for(var i=0; i < localStorage.length; i++) {
+    for (var i=0; i < localStorage.length; i++) {
         var key = localStorage.key(i);
         var value = localStorage[key];
         $(".local-storage-past-order span")
@@ -173,6 +162,24 @@ function getOrderFromStorage(){
 };
 
 
+//4.1
+function searchForOrder(){
+    $('[data-type-button="find-order"]').on('click', function () {
+        event.preventDefault();
+        var email = $('[data-type="emailSearch"]')
+        getDataFromAPI()
+            .then(searchAPI(email))
+    });
+};
+
+function searchAPI(emailSearch){
+
+}
+
+
+
+
+
 // hides containers for orders until button is clicked
 $(".local-orders-container").hide();
 $(".past-orders-container").hide();
@@ -182,6 +189,7 @@ $(".past-orders-container").hide();
 getOrderFromStorage();  // 1
 getAllPastOrders(); // 2
 submitClick();  // 3
+searchForOrder(); //4
 
 
 

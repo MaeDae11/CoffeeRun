@@ -87,7 +87,13 @@
               <button type="reset" class="btn btn-default">Reset</button>
               <button data-type-button="personal-order" class="btn btn-default">Get My Order</button>
               <button data-type-button="orders" class="btn btn-default">Get All Past Orders</button>
+              <div class="input-group col-md-8"> 
+                <input class="form-control email-search" data-type="emailSearch" name="emailAddress" id="emailInput" value="" placeholder="dr@who.com">
+                <span class="input-group-btn "><button class="btn btn-default search-button" data-type-button="find-order">Search</span></button>
+              </div>
             </div>
+            </div>
+
 
             <!--end of form  -->
           </form>
@@ -97,6 +103,7 @@
       <!--containers for information to be printed when triggered with click of buttons within form-->
       <!--container for all past orders received from API  -->
       <div class="past-orders-container fluid-container">
+        <h3>All Past Orders</h3>
         <p class="past-order text-capitalize"><span></span></p>
       </div>
 
