@@ -39,10 +39,16 @@ font-family: 'Oswald', sans-serif; */
 }
 
 .past-orders-container {
-    line-height: 5rem;
+    line-height: 4rem;
     padding-left: 15px;
     height: 200px;
     overflow-x: scroll;
+    font-family: 'Oswald', sans-serif;
+}
+.searched-container {
+    line-height: 2rem;
+    padding-left: 15px;
+    padding-bottom: 30px;
     font-family: 'Oswald', sans-serif;
 }
 
