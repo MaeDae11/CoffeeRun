@@ -10,12 +10,6 @@ var URL = 'http://dc-coffeerun.herokuapp.com/api/coffeeorders';
 var $SUBMIT = $('[type="submit"]');
 var theDataz = {};
 
-// global variables that ended up only being used once as of right now
-// var $EMAIL = $('[name="emailAddress"]');
-// var $COFFEE = $('[name="coffee"]');
-// var $SIZE = $('[name="size"]');
-// var $FLAVOR = $('[name="flavor"]');
-// var $STRENGTH = $('[name="strength"]')
 
 
 
@@ -107,7 +101,7 @@ function appendOrderToHTML(data){
 // gets data from API in JSON format
 //2.3
 function getDataFromAPI(){
-    return $.getJSON(URL)
+    return $.getJSON(URL);
 }
 // 2.2 
 // callback: gets all data from API and then prints to HTML
@@ -116,6 +110,28 @@ function getOrdersFromAPI(){
         .then(appendOrderToHTML);
 };
 
+
+// 1 and 2 and 4 keeps track of how many times button is clicked
+function clickCounter(receivedCounter, dataType){
+    if (receivedCounter === 0){
+            dataType.show();
+            getOrdersFromAPI();
+            receivedCounter = 1;
+    } else if (receivedCounter === 1){
+            dataType.hide();
+            receivedCounter = 0;
+    } return receivedCounter;
+};
+
+// 2.2
+//innitiates to get all past orders from API
+function getAllPastOrders(){
+    var counter = 0;
+    $('[data-type-button="orders"]').on('click', function (){
+        event.preventDefault();
+        counter = clickCounter(counter, $( ".past-orders-container"));
+    });
+};
 
 //1.2
 // get localstorage values in array and prints to HTML
@@ -127,53 +143,41 @@ function getValues(counter){
             .append(key + ": " + value + "<br />");
     }
 };
-
-// 1 and 2 keeps track of how many times button is clicked
-function clickCounter(receivedCounter, dataType){
-    if (receivedCounter === 0){
-            dataType.show();
-            getOrdersFromAPI();
-            receivedCounter = 1;
-    } else if (receivedCounter === 1){
-            dataType.hide();
-            receivedCounter = 0;
-    } return receivedCounter
-};
-
-// 1.2
-//innitiates to get all past orders from API
-function getAllPastOrders(){
-    var counter = 0;
-    $('[data-type-button="orders"]').on('click', function (){
-        event.preventDefault();
-        counter = clickCounter(counter, $( ".past-orders-container"));
-    });
-};
-
 // 1.1
 // innitiates to get order from local storage
 function getOrderFromStorage(){
     var counter = 0;
     $('[data-type-button="personal-order"]').on('click', function () {
         event.preventDefault();
+        emptyText($(".local-storage-past-order span"));
         getValues();
         counter = clickCounter(counter, $(".local-orders-container"));
     });
 };
 
-
+// when search container is filled out and search is click, this initializes
+// gets data from API 
+// then searchs the API for particular email input by user
+// then uses a counter so person can hide search bar
 //4.1
 function searchForOrder(){
-    var counter = 0;
     $('[data-type-button="find-order"]').on('click', function () {
         event.preventDefault();
+        // no ; after because would stop
         getDataFromAPI()
-            .then(searchAPI)
-            .then(counter = clickCounter(counter, $(".searched-container")));
+            .then(searchAPI);
     });
 };
 
+// after getting data from API
+// takes value submited in search area. 
+//creates a blank object so can sort through specific data associated with email address
+//if email is found within data...
+// order will be set to data[$email] / this enables the ability to print different key values of data[$email] object
+// if the email has been found, the order will be appended to the DOM
+// if email was NOT found, user will recieve error
 function searchAPI(data){
+    emptyText($(".searched-order span"));
     var $email = $('.email-search').val();
     var order = {};
     if (data[$email]){
@@ -190,12 +194,14 @@ function searchAPI(data){
     }
 };
 // 
-
+// emptys text in certain text fields so if button is clicked multiple times, the information is not printed over and over and over.
+function emptyText(className){
+    className.empty("");
+}
 
 // hides containers for orders until button is clicked
 $(".local-orders-container").hide();
 $(".past-orders-container").hide();
-$(".searched-container").hide();
 
 // innitializes page
 // A, B and C correlate to code above and which steps are first, second, etc.
