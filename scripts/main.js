@@ -95,9 +95,26 @@ function checkForUndefined(value){
 function appendOrderToHTML(data){
     $.each(data, function(key, val){
         $(".past-order span")
-            .append("Order: " + key + ": " + "orders a " + val['coffee'] + " " + checkForUndefined(val['size']) + " " + checkForUndefined(val['flavor']) + " " + setStrengthOfCoffee(val['strength']) + " " + "coffee." + "<br />");
+            .append("Order: " + key + ": " + 
+            "orders a " + val['coffee'] + " " + 
+            checkForUndefined(val['size']) + " " + 
+            checkForUndefined(val['flavor']) + " " + 
+            setStrengthOfCoffee(val['strength']) + " " + "coffee." + " " + "<input id='chk_" + key + "'data-type='check-box' type='checkbox' value='" + true + "' />"  + "<br />" ); 
     });
-};
+    deleteOrderFromAPI();
+};               
+
+
+function deleteOrderFromAPI(){
+    var ifChecked = ($("input[type='checkbox']").attr())
+    if (ifChecked === "checked"){
+        console.log("OKKKKK");
+    };              
+}
+//$('#test').prop('checked', true); */}
+  
+
+
 // gets data from API in JSON format
 //2.3
 function getDataFromAPI(){
@@ -199,12 +216,18 @@ function emptyText(className){
     className.empty("");
 }
 
+
+
+
+
+
+
 // hides containers for orders until button is clicked
 $(".local-orders-container").hide();
 $(".past-orders-container").hide();
 
 // innitializes page
-// A, B and C correlate to code above and which steps are first, second, etc.
+// 1-4 correlate to code above and which steps are first, second, etc.
 getOrderFromStorage();  // 1
 getAllPastOrders(); // 2
 submitClick();  // 3
