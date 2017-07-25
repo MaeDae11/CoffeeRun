@@ -161,15 +161,15 @@ function getOrderFromStorage(){
     });
 };
 
-// does not work
+
 //4.1
 function searchForOrder(){
+    var counter = 0;
     $('[data-type-button="find-order"]').on('click', function () {
         event.preventDefault();
         getDataFromAPI()
-            .then(searchAPI);
-        // console.log(emailData)
-        // printSearch(emailData);
+            .then(searchAPI)
+            .then(counter = clickCounter(counter, $(".searched-container")));
     });
 };
 
@@ -179,7 +179,14 @@ function searchAPI(data){
     if (data[$email]){
         order = data[$email];
         $(".searched-order span")
-            .append($email + ": " + checkForUndefined(order.coffee) + " " + checkForUndefined(order.size) + " " + checkForUndefined(order.flavor) + " " + setStrengthOfCoffee(order.strength)  + " coffee." + "<br />");
+            .append($email + ": " + 
+            checkForUndefined(order.coffee) + " " + 
+            checkForUndefined(order.size) + " " + 
+            checkForUndefined(order.flavor) + " " + 
+            setStrengthOfCoffee(order.strength)  + 
+            " coffee." + "<br />");
+    } else {
+        $(".searched-order span").append("We do not have that email on file.");
     }
 };
 // 
@@ -188,6 +195,7 @@ function searchAPI(data){
 // hides containers for orders until button is clicked
 $(".local-orders-container").hide();
 $(".past-orders-container").hide();
+$(".searched-container").hide();
 
 // innitializes page
 // A, B and C correlate to code above and which steps are first, second, etc.
