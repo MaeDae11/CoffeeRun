@@ -99,17 +99,18 @@ function appendOrderToHTML(data){
             "orders a " + val['coffee'] + " " + 
             checkForUndefined(val['size']) + " " + 
             checkForUndefined(val['flavor']) + " " + 
-            setStrengthOfCoffee(val['strength']) + " " + "coffee." + " " + "<input id='chk_" + key + "'data-type='check-box' type='checkbox' value='" + true + "' />"  + "<br />" ); 
+            setStrengthOfCoffee(val['strength']) + " " + "coffee." + " " + "<input id='chk_" + "'data-type='check-box' type='checkbox' value='" + true + "' />"  + "<br />" ); 
     });
-    deleteOrderFromAPI();
+    
 };               
 
 
 function deleteOrderFromAPI(){
-    var ifChecked = ($("input[type='checkbox']").attr())
-    if (ifChecked === "checked"){
-        console.log("OKKKKK");
-    };              
+    $("[data-type='check-box-container']").on('click', "input[type='checkbox']", function (){
+        console.log("working????");
+        prompt("Would you like to delete this order?");
+                
+    });
 }
 //$('#test').prop('checked', true); */}
   
@@ -232,6 +233,7 @@ getOrderFromStorage();  // 1
 getAllPastOrders(); // 2
 submitClick();  // 3
 searchForOrder(); //4
+deleteOrderFromAPI(); //5
 
 
 
