@@ -105,11 +105,11 @@ function appendOrderToHTML(data){
     });
 };
 // gets data from API in JSON format
-// 2.3
+//2.3
 function getDataFromAPI(){
-    return $.getJSON(URL);
+    return $.getJSON(URL)
 }
-// 2.2
+// 2.2 
 // callback: gets all data from API and then prints to HTML
 function getOrdersFromAPI(){
     getDataFromAPI()
@@ -138,7 +138,7 @@ function clickCounter(receivedCounter, dataType){
             dataType.hide();
             receivedCounter = 0;
     } return receivedCounter
-}
+};
 
 // 1.2
 //innitiates to get all past orders from API
@@ -161,23 +161,28 @@ function getOrderFromStorage(){
     });
 };
 
-
+// does not work
 //4.1
 function searchForOrder(){
     $('[data-type-button="find-order"]').on('click', function () {
         event.preventDefault();
-        var email = $('[data-type="emailSearch"]')
         getDataFromAPI()
-            .then(searchAPI(email))
+            .then(searchAPI);
+        // console.log(emailData)
+        // printSearch(emailData);
     });
 };
 
-function searchAPI(emailSearch){
-
-}
-
-
-
+function searchAPI(data){
+    var $email = $('.email-search').val();
+    var order = {};
+    if (data[$email]){
+        order = data[$email];
+        $(".searched-order span")
+            .append($email + ": " + checkForUndefined(order.coffee) + " " + checkForUndefined(order.size) + " " + checkForUndefined(order.flavor) + " " + setStrengthOfCoffee(order.strength)  + " coffee." + "<br />");
+    }
+};
+// 
 
 
 // hides containers for orders until button is clicked
