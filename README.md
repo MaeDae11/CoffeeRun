@@ -15,7 +15,9 @@ DigitalCrafts: Learning LocalStorage
 <b>Difficulties:</b>
 - This project was my first incounter with APIs. Using another database with nested objects that I didn't personally create was interesting. Great learning experience to read through code and figure out how to extract the data needed.
 
+<br />
 
+<h3>Code snipit of jQuery used within Coffee Run to retreive data from our API in a JSON format</h3>
 
 ```javascript
 // gets data from API in JSON format
@@ -46,10 +48,20 @@ function deleteOrderFromAPI(){
     });
 };
 ```
-
-
-
+<br />
+<h3>Code snipit of jQuery: searches item, then accounts for any blank values retreived from API</h3>
 ```javascript
+// when search container is filled out and search is click, this initializes
+// gets data from API 
+// then searchs the API for particular email input by user
+// then uses a counter so person can hide search bar
+function searchForOrder(){
+    $('[data-type-button="find-order"]').on('click', function () {
+        event.preventDefault();
+        getDataFromAPI()
+            .then(searchAPI);
+    });
+};
 // after getting data from API
 // takes value submited in search area. 
 //creates a blank object so can sort through specific data associated with email address
@@ -74,4 +86,8 @@ function searchAPI(data){
         $(".searched-order span").append("We do not have that email on file.");
     }
 };
+// emptys DOM in certain text fields so if button is clicked multiple times, the information is not printed over and over and over.
+function emptyText(className){
+    className.empty("");
+}
 ```
