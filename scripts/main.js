@@ -12,17 +12,11 @@ var theDataz = {};
 
 
 
-
-
-// 3.3
-
-// // 3.3
 // function getCoffee(){
 //     var coffeeType = 'coffee';
 //     var $coffeeValue = $('[name="coffee"]').val();
 //     setValues(coffeeType, $coffeeValue);
 // }
-// // 3.3
 // function getEmail(){
 //     var email = 'emailAddress';
 //     var $emailValue = $('[name="emailAddress"]').val();
@@ -51,7 +45,11 @@ function setValues(key, keyValue){
     localStorage.setItem(key, keyValue);
     theDataz[key] = keyValue;
 };
+
+// sets values to LocalStorage then the API
+
 // submitts to API
+
 function submitClick(){
     $('[data-type-button="submit"]').on('click', function (){
         event.preventDefault();
@@ -65,9 +63,7 @@ function submitClick(){
         });
     }); 
 };
-
 // takes value of 'strength' for coffee and returns a phrase in a string instead of a number
-//2.5
 function setStrengthOfCoffee(value){
     if (value === undefined){
         value = "";
@@ -83,16 +79,25 @@ function setStrengthOfCoffee(value){
 };
 
 // checks if value is undefined and replaces it with empty string
-//2.5
 function checkForUndefined(value){
     if (value === undefined){
        value = "";
     }
     return value;
 };
-// prints to HTML
-// 2.4
-function appendOrderToHTML(data){
+
+
+// gets data from API in JSON format
+function getDataFromAPI(){
+    return $.getJSON(URL);
+}
+// callback: gets all data from API and then prints to DOM
+function getOrdersFromAPI(){
+    getDataFromAPI()
+        .then(appendOrderToDOM);
+};
+// appends orders to DOM from API
+function appendOrderToDOM(data){
     $.each(data, function(key, val){
         $(".past-order span")
             .append("Order: " + key + ": " + 
@@ -101,32 +106,18 @@ function appendOrderToHTML(data){
             checkForUndefined(val['flavor']) + " " + 
             setStrengthOfCoffee(val['strength']) + " " + "coffee." + " " + "<input id='chk_" + "'data-type='check-box' type='checkbox' value='" + true + "' />"  + "<br />" ); 
     });
-    
-};               
-
-
-function deleteOrderFromAPI(){
-    $("[data-type='check-box-container']").on('click', "input[type='checkbox']", function (){
-        console.log("working????");
-        prompt("Would you like to delete this order?");
-                
-    });
-}
-//$('#test').prop('checked', true); */}
-  
-
-
-// gets data from API in JSON format
-//2.3
-function getDataFromAPI(){
-    return $.getJSON(URL);
-}
-// 2.2 
-// callback: gets all data from API and then prints to HTML
-function getOrdersFromAPI(){
-    getDataFromAPI()
-        .then(appendOrderToHTML);
 };
+// Delets order from API
+function deleteOrderFromAPI(){
+    var $checkBoxContainer = $("[data-type='check-box-container']");
+    $checkBoxContainer.on('click', "input[type='checkbox']", function (){
+        prompt("Would you like to delete this order?");
+    });
+};
+
+
+
+
 
 
 // 1 and 2 and 4 keeps track of how many times button is clicked
@@ -152,7 +143,7 @@ function getAllPastOrders(){
 };
 
 //1.2
-// get localstorage values in array and prints to HTML
+// get localstorage values in array and prints to DOM
 function getValues(counter){
     for (var i=0; i < localStorage.length; i++) {
         var key = localStorage.key(i);
