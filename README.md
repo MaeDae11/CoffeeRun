@@ -17,7 +17,7 @@ DigitalCrafts: Learning LocalStorage
 
 
 
-<code>
+```javascript
 // gets data from API in JSON format
 function getDataFromAPI(){
     return $.getJSON(URL);
@@ -45,12 +45,11 @@ function deleteOrderFromAPI(){
         prompt("Would you like to delete this order?");
     });
 };
-
-</code>
-
+```
 
 
-<code>
+
+```
 // after getting data from API
 // takes value submited in search area. 
 //creates a blank object so can sort through specific data associated with email address
@@ -75,4 +74,4 @@ function searchAPI(data){
         $(".searched-order span").append("We do not have that email on file.");
     }
 };
-</code>
+```
