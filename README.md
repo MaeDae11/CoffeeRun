@@ -49,12 +49,12 @@ function deleteOrderFromAPI(){
 };
 ```
 <br />
-<h3>Code snipit of jQuery: searches item, then accounts for any blank values retreived from API</h3>
+<h3>// Code snipit of jQuery: searches item, then accounts for any blank values retreived from API</h3>
+<h5>// when search container is filled out and search is click, this initializes</h5>
+<h5>// gets data from API</h5>
+<h5>// then searchs the API for particular email input by user</h5>
+<h5>// then uses a counter so person can hide search bar</h5>
 ```javascript
-// when search container is filled out and search is click, this initializes
-// gets data from API 
-// then searchs the API for particular email input by user
-// then uses a counter so person can hide search bar
 function searchForOrder(){
     $('[data-type-button="find-order"]').on('click', function () {
         event.preventDefault();
@@ -62,13 +62,15 @@ function searchForOrder(){
             .then(searchAPI);
     });
 };
+```
 // after getting data from API
 // takes value submited in search area. 
-//creates a blank object so can sort through specific data associated with email address
-//if email is found within data...
+// creates a blank object so can sort through specific data associated with email address
+// if email is found within data...
 // order will be set to data[$email] / this enables the ability to print different key values of data[$email] object
 // if the email has been found, the order will be appended to the DOM
-// if email was NOT found, user will recieve error
+// if email was NOT found, user will recieve error 
+```javascript
 function searchAPI(data){
     emptyText($(".searched-order span"));
     var $email = $('.email-search').val();
