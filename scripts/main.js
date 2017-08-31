@@ -15,51 +15,51 @@ var theDataz = {};
 
 
 // 3.3
+
+// // 3.3
+// function getCoffee(){
+//     var coffeeType = 'coffee';
+//     var $coffeeValue = $('[name="coffee"]').val();
+//     setValues(coffeeType, $coffeeValue);
+// }
+// // 3.3
+// function getEmail(){
+//     var email = 'emailAddress';
+//     var $emailValue = $('[name="emailAddress"]').val();
+//     setValues(email, $emailValue);
+// }
+// // 3.3
+// function getSize(){
+//     var size = 'size';
+//     var $sizeValue = $('[name="size"]').val();
+//     setValues(size, $sizeValue);
+// }
+// // 3.3
+// function getFlavor() {
+//     var flavor = 'flavor';
+//     var $flavorValue = $('[name="flavor"]').val();
+//     setValues(flavor, $flavorValue);
+// }
+// // 3.3
+// function getStrength() {
+//     var strength = 'strength';
+//     var $strengthValue = $('[name="strength"]').val();
+//     setValues(strength, $strengthValue);
+// }
+
 function setValues(key, keyValue){
     localStorage.setItem(key, keyValue);
     theDataz[key] = keyValue;
 };
-// 3.3
-function getCoffee(){
-    var coffeeType = 'coffee';
-    var $coffeeValue = $('[name="coffee"]').val();
-    setValues(coffeeType, $coffeeValue);
-}
-// 3.3
-function getEmail(){
-    var email = 'emailAddress';
-    var $emailValue = $('[name="emailAddress"]').val();
-    setValues(email, $emailValue);
-}
-// 3.3
-function getSize(){
-    var size = 'size';
-    var $sizeValue = $('[name="size"]').val();
-    setValues(size, $sizeValue);
-}
-// 3.3
-function getFlavor() {
-    var flavor = 'flavor';
-    var $flavorValue = $('[name="flavor"]').val();
-    setValues(flavor, $flavorValue);
-}
-// 3.3
-function getStrength() {
-    var strength = 'strength';
-    var $strengthValue = $('[name="strength"]').val();
-    setValues(strength, $strengthValue);
-}
-
-// 3.1
 // submitts to API
 function submitClick(){
     $('[data-type-button="submit"]').on('click', function (){
         event.preventDefault();
-        getCoffee();
-        getEmail();
-        getSize();
-        getFlavor();
-        getStrength();
+        setValues('coffee', ($('[name="coffee"]').val()));
+        setValues('emailAddress', ($('[name="emailAddress"]').val()));
+        setValues('size', ($('[name="size"]').val()));
+        setValues('flavor', ($('[name="flavor"]').val()));
+        setValues('strength', ($('[name="strength"]').val()));
         $.post(URL, theDataz, function (resp){
             console.log(resp);
         });
@@ -177,7 +177,6 @@ function getOrderFromStorage(){
 // gets data from API 
 // then searchs the API for particular email input by user
 // then uses a counter so person can hide search bar
-//4.1
 function searchForOrder(){
     $('[data-type-button="find-order"]').on('click', function () {
         event.preventDefault();
@@ -186,7 +185,6 @@ function searchForOrder(){
             .then(searchAPI);
     });
 };
-
 // after getting data from API
 // takes value submited in search area. 
 //creates a blank object so can sort through specific data associated with email address
@@ -211,7 +209,6 @@ function searchAPI(data){
         $(".searched-order span").append("We do not have that email on file.");
     }
 };
-// 
 // emptys text in certain text fields so if button is clicked multiple times, the information is not printed over and over and over.
 function emptyText(className){
     className.empty("");
