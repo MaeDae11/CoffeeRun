@@ -16,7 +16,12 @@ DigitalCrafts: Learning LocalStorage
 - This project was my first incounter with APIs. Using another database with nested objects that I didn't personally create was interesting. Great learning experience to read through code and figure out how to extract the data needed.
 
 <br />
-
+<h3>Showcases the primary content of Coffee Run</h3>
+<img src="images/CoffeeRunForm.png" alt="snipit of coffee run main application with form for submitting coffee order">
+<br />
+<h3>Shows search rendering</h3>
+<img src="images/CoffeeRunSearch.png" alt="return of coffee order search">
+<br />
 <h3>Code snipit of jQuery used within Coffee Run to retreive data from our API in a JSON format</h3>
 
 ```javascript
