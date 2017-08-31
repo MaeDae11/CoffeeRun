@@ -49,7 +49,7 @@ function deleteOrderFromAPI(){
 
 
 
-```
+```javascript
 // after getting data from API
 // takes value submited in search area. 
 //creates a blank object so can sort through specific data associated with email address
