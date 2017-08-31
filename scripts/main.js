@@ -17,7 +17,6 @@ var theDataz = {};
 //     var $coffeeValue = $('[name="coffee"]').val();
 //     setValues(coffeeType, $coffeeValue);
 // }
-// 3.3
 // function getEmail(){
 //     var email = 'emailAddress';
 //     var $emailValue = $('[name="emailAddress"]').val();
@@ -46,12 +45,16 @@ function setValues(key, keyValue){
     localStorage.setItem(key, keyValue);
     theDataz[key] = keyValue;
 };
+
 // sets values to LocalStorage then the API
+
+// submitts to API
+
 function submitClick(){
     $('[data-type-button="submit"]').on('click', function (){
         event.preventDefault();
         setValues('coffee', ($('[name="coffee"]').val()));
-        setValues('emailAdress', ($('[name="emailAdress"]').val()));
+        setValues('emailAddress', ($('[name="emailAddress"]').val()));
         setValues('size', ($('[name="size"]').val()));
         setValues('flavor', ($('[name="flavor"]').val()));
         setValues('strength', ($('[name="strength"]').val()));
@@ -165,7 +168,6 @@ function getOrderFromStorage(){
 // gets data from API 
 // then searchs the API for particular email input by user
 // then uses a counter so person can hide search bar
-//4.1
 function searchForOrder(){
     $('[data-type-button="find-order"]').on('click', function () {
         event.preventDefault();
@@ -174,7 +176,6 @@ function searchForOrder(){
             .then(searchAPI);
     });
 };
-
 // after getting data from API
 // takes value submited in search area. 
 //creates a blank object so can sort through specific data associated with email address
